@@ -1,6 +1,6 @@
 import flask
 import os
- 
+
 application = flask.Flask(__name__)
 
 # Only enable Flask debugging if an env var is set to true
@@ -20,6 +20,14 @@ def hello_world():
                                   flask_debug=application.debug,
                                   app_version=app_version,
                                   enable_cool_new_feature=enable_cool_new_feature)
- 
+@application.route('/starter-pack')
+def starter_pack():
+    message = "Starter Pack"
+    return flask.render_template('starter-pack.html',
+                                  title=message,
+                                  flask_debug=application.debug,
+                                  app_version=app_version,
+                                  enable_cool_new_feature=enable_cool_new_feature)
+
 if __name__ == '__main__':
     application.run(host='0.0.0.0')
